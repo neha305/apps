@@ -68,3 +68,15 @@ brews:
     directory: Formula
     description: "A cute puppy that says things in your terminal."
     homepage: "https://github.com/neha305/apps"
+
+snaps:
+  - name: puppysay
+    summary: "A cute puppy that says things in your terminal."
+    description: |
+      A simple, standalone CLI tool written in Go that prints out 
+      an ASCII puppy along with whatever text you pass into it.
+    grade: stable
+    confinement: strict
+    apps:
+      puppysay:
+        command: puppysay

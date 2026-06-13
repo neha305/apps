@@ -51,3 +51,15 @@ snapcrafts:
     apps:
       colourtree:
         command: colourtree
+
+scoops:
+  - name: colourtree
+    repository:
+      owner: neha305
+      name: homebrew-tap # You can host your Scoop file in the exact same tap repo!
+    commit_author:
+      name: Neha Gujjari
+      email: gujjarineha@gmail.com
+    directory: bucket
+    homepage: "https://github.com/neha305/apps"
+    description: "Tree but different colours for different levels"

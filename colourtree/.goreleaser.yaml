@@ -1,0 +1,53 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - main: .
+    binary: colourtree   # <-- Forces binary name to match your app
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - arm64
+      - amd64
+      - "386"
+
+archives:
+  - formats: [tar.gz]
+    name_template: >-
+      colourtree_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+brews:
+  - name: colourtree
+    repository:
+      owner: neha305
+      name: homebrew-tap
+    commit_author:
+      name: Neha Gujjari
+      email: gujjarineha@gmail.com
+    directory: Formula
+    description: "Tree but different colours at each level"
+    homepage: "https://github.com/neha305/apps"
+
+snapcrafts:
+  - name: colourtree
+    summary: "Tree but different colours at each level"
+    description: "A standalone CLI tool written in Go."
+    grade: stable
+    confinement: strict
+    apps:
+      colourtree:
+        command: colourtree
